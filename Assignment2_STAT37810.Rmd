@@ -1,5 +1,5 @@
 ---
-title: "Assignment3_STAT37810"
+title: "Assignment2_STAT37810"
 author: "Yanfei Zhou"
 date: "19/10/2018"
 output: html_document
