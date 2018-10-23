@@ -131,39 +131,42 @@ acceptance = 1-mean(duplicated(chain[-(1:burnIn),]))
 
 
 ########### summary plot #################
-# set 2 rows and 3 columns subgragh
-par(mfrow = c(2,3))
-# plot the histogram of the after burnIn values in chain (posterior of a)
-hist(chain[-(1:burnIn),1],nclass=30, , main="Posterior of a", xlab="True value = red line" )
-# draw the mean of after burnIn values in chain for a
-abline(v = mean(chain[-(1:burnIn),1]))
-# draw the true value of a
-abline(v = trueA, col="red" )
-# plot the histogram of the after burnIn values in chain (posterior of b)
-hist(chain[-(1:burnIn),2],nclass=30, main="Posterior of b", xlab="True value = red line")
-# draw the mean of after burnIn values in chain for b
-abline(v = mean(chain[-(1:burnIn),2]))
-# draw the true value of a
-abline(v = trueB, col="red" )
-# plot the histogram of the after burnIn values in chain (posterior of sd)
-hist(chain[-(1:burnIn),3],nclass=30, main="Posterior of sd", xlab="True value = red line")
-# draw the mean of after burnIn values in chain for sd
-abline(v = mean(chain[-(1:burnIn),3]) )
-# draw the true value of a
-abline(v = trueSd, col="red" )
-#plot the values in chain for a (except burnIn values)
-plot(chain[-(1:burnIn),1], type = "l", xlab="True value = red line" , main = "Chain values of a",)
-#draw the true value of a
-abline(h = trueA, col="red" )
-#plot the values in chain for b (except burnIn values)
-plot(chain[-(1:burnIn),2], type = "l", xlab="True value = red line" , main = "Chain values of b", )
-#draw the true value of b
-abline(h = trueB, col="red" )
-#plot the values in chain for sd (except burnIn values)
-plot(chain[-(1:burnIn),3], type = "l", xlab="True value = red line" , main = "Chain values of sd", )
-#draw the true value of sd
-abline(h = trueSd, col="red" )
-
+function(startvalue,iterations){
+  burnIn = 0.5*iterations
+  chain = run_metropolis_MCMC(startvalue, iterations = iterations)
+  # set 2 rows and 3 columns subgragh
+  par(mfrow = c(2,3))
+  # plot the histogram of the after burnIn values in chain (posterior of a)
+  hist(chain[-(1:burnIn),1],nclass=30, , main="Posterior of a", xlab="True value = red line" )
+  # draw the mean of after burnIn values in chain for a
+  abline(v = mean(chain[-(1:burnIn),1]))
+  # draw the true value of a
+  abline(v = trueA, col="red" )
+  # plot the histogram of the after burnIn values in chain (posterior of b)
+  hist(chain[-(1:burnIn),2],nclass=30, main="Posterior of b", xlab="True value = red line")
+  # draw the mean of after burnIn values in chain for b
+  abline(v = mean(chain[-(1:burnIn),2]))
+  # draw the true value of a
+  abline(v = trueB, col="red" )
+  # plot the histogram of the after burnIn values in chain (posterior of sd)
+  hist(chain[-(1:burnIn),3],nclass=30, main="Posterior of sd", xlab="True value = red line")
+  # draw the mean of after burnIn values in chain for sd
+  abline(v = mean(chain[-(1:burnIn),3]) )
+  # draw the true value of a
+  abline(v = trueSd, col="red" )
+  #plot the values in chain for a (except burnIn values)
+  plot(chain[-(1:burnIn),1], type = "l", xlab="True value = red line" , main = "Chain values of a",)
+  #draw the true value of a
+  abline(h = trueA, col="red" )
+  #plot the values in chain for b (except burnIn values)
+  plot(chain[-(1:burnIn),2], type = "l", xlab="True value = red line" , main = "Chain values of b", )
+  #draw the true value of b
+  abline(h = trueB, col="red" )
+  #plot the values in chain for sd (except burnIn values)
+  plot(chain[-(1:burnIn),3], type = "l", xlab="True value = red line" , main = "Chain values of sd", )
+  #draw the true value of sd
+  abline(h = trueSd, col="red" )
+}
 
 
 
